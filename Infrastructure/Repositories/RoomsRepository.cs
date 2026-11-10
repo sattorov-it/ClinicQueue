@@ -7,48 +7,44 @@ namespace Infrastructure.Repositories;
 
 public class RoomRepository(AppDbContext appDbContext) : IRoomsRepository
 {
-    private AppDbContext _context = appDbContext;
-    public async Task<bool> AddRoomAsync(Rooms room)
+    private readonly AppDbContext _context = appDbContext;
+
+    public async Task<bool> AddRoomAsync(Room room)
     {
-        var connection = _context.Connection();
-        var query = "insert into rooms (name) values (@name)";
+        using var connection = _context.Connection();
+        var query = "insert into rooms (name) values (@Name)";
+        var res = await connection.ExecuteAsync(query, room);
+        return res > 0;
+    }
+
+    public async Task<bool> UpdateRoomAsync(Room room)
+    {
+        using var connection = _context.Connection();
+        var query = "update rooms set name = @Name where id = @Id";
         var res = await connection.ExecuteAsync(query, room);
         return res > 0;
     }
 
     public async Task<bool> DeactivateRoomAsync(int id)
     {
-        var connection = _context.Connection();
+        using var connection = _context.Connection();
         var query = "update rooms set isactive = false where id = @id";
         var res = await connection.ExecuteAsync(query, new { id });
         return res > 0;
     }
 
-    public async Task<bool> UpdateRoomAsync(Rooms room)
+    public async Task<Room?> GetRoomAsync(int id)
     {
-        var connection = _context.Connection();
-        var query = "update rooms set name = @name where id = @id";
-        var res = await connection.ExecuteAsync(query, room);
-        return res > 0;
+        using var connection = _context.Connection();
+        var query = "select * from rooms where id = @id";
+        return await connection.QuerySingleOrDefaultAsync<Room>(query, new { id });
     }
-    public async Task<List<Rooms>> GetAll()
+
+    public async Task<List<Room>> GetRoomsAsync()
     {
-        var connection = _context.Connection();
-        var query = "select * from rooms";
-        var rooms = await connection.QueryAsync<Rooms>(query);
+        using var connection = _context.Connection();
+        var query = "select * from rooms order by id";
+        var rooms = await connection.QueryAsync<Room>(query);
         return rooms.ToList();
-    }
-
-    public async Task<Rooms> GetRoomsAsync(int id)
-    {
-        throw new NotImplementedException();
-    }
-
-    public async Task<bool> UpdateRoomAsync(int id)
-    {
-        var connection = _context.Connection();
-        var query = "update rooms set name = @name where id = @id";
-        var res = await connection.ExecuteAsync(query, id);
-        return res > 0;
     }
 }

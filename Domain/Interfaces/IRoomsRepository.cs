@@ -4,9 +4,9 @@ namespace Domain.Interfaces;
 
 public interface IRoomsRepository
 {
-    Task<bool> AddRoomAsync(Rooms room);
-    Task<List<Rooms>> GetAll();
-    Task<Rooms> GetRoomsAsync(int id);
-    Task<bool> UpdateRoomAsync(int id);
+    Task<bool> AddRoomAsync(Room room);
+    Task<bool> UpdateRoomAsync(Room room);
     Task<bool> DeactivateRoomAsync(int id);
+    Task<Room?> GetRoomAsync(int id);
+    Task<List<Room>> GetRoomsAsync();
 }

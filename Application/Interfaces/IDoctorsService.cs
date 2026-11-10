@@ -1,14 +1,13 @@
 using Application.Responses;
 using Domain.Models;
-namespace Domain.Interfaces;
 
-public interface IDoctorsService
+namespace Application.Interfaces;
+
+public interface IDoctorService
 {
-    Task<ApiResponse<string>> AddDoctorAsync(Doctors doctor);
-    Task<ApiResponse<List<Doctors>>> GetDoctorsAsync();
-    Task<ApiResponse<Doctors>> GetDoctorAsync(int id);
-    Task<ApiResponse<string>> UpdateDoctorAsync(Doctors doctor);
-    Task<ApiResponse<string>> DeactivateDoctorAsync(int id);
-    Task<ApiResponse<string>> UpdateDoctorAsync(int id, Doctors doctor);
-
+    Task<ApiResponse<bool>> AddDoctorAsync(Doctor doctor);
+    Task<ApiResponse<bool>> UpdateDoctorAsync(int id, Doctor doctor);
+    Task<ApiResponse<bool>> DeactivateDoctorAsync(int id);
+    Task<ApiResponse<Doctor>> GetDoctorAsync(int id);
+    Task<ApiResponse<List<Doctor>>> GetDoctorsAsync();
 }

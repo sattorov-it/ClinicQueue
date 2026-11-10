@@ -5,12 +5,8 @@ namespace Infrastructure.Data;
 
 public class AppDbContext
 {
-    private string connectionString = "Host=localhost;Port=5432;Database=ClinicQueue API;Username=postgres;Password=1234";
+    private string connectionString = "Host=localhost;Port=5432;Database=ClinicQueueAPI;Username=postgres;Password=1234";
 
     public IDbConnection Connection() => new NpgsqlConnection(connectionString);
 
-    internal object GetConnection()
-    {
-        throw new NotImplementedException();
-    }
 }

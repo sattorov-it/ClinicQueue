@@ -1,13 +1,11 @@
 using Application.Responses;
 using Domain.Models;
+namespace Application.Interfaces;
 
-
-namespace Domain.Interfaces;
-
-public interface IRoomsService
+public interface IRoomService
 {
-    Task<ApiResponse<string>> AddRoomAsync(Rooms room);
-    Task<ApiResponse<List<Rooms>>> GetRoomsAsync();
-    Task<ApiResponse<string>> UpdateRoomAsync(Rooms room);
-    Task<ApiResponse<string>> DeactivateRoomAsync(int id);
+    Task<ApiResponse<bool>> AddRoomAsync(Room room);
+    Task<ApiResponse<bool>> UpdateRoomAsync(int id, Room room);
+    Task<ApiResponse<bool>> DeactivateRoomAsync(int id);
+    Task<ApiResponse<List<Room>>> GetRoomsAsync();
 }

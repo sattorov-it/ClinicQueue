@@ -624,11 +624,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Vali\\Desktop\\ekzamin WebAPI\\WebAPI\\WebAPI.csproj",
+      "projectUniqueName": "C:\\Users\\Vali\\Desktop\\PROJECT\\ClinicQueue\\WebAPI\\WebAPI.csproj",
       "projectName": "WebAPI",
-      "projectPath": "C:\\Users\\Vali\\Desktop\\ekzamin WebAPI\\WebAPI\\WebAPI.csproj",
+      "projectPath": "C:\\Users\\Vali\\Desktop\\PROJECT\\ClinicQueue\\WebAPI\\WebAPI.csproj",
       "packagesPath": "C:\\Users\\Vali\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Vali\\Desktop\\ekzamin WebAPI\\WebAPI\\obj\\",
+      "outputPath": "C:\\Users\\Vali\\Desktop\\PROJECT\\ClinicQueue\\WebAPI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Vali\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -644,11 +644,11 @@
           "framework": "net10.0",
           "targetAlias": "net10.0",
           "projectReferences": {
-            "C:\\Users\\Vali\\Desktop\\ekzamin WebAPI\\Application\\Application.csproj": {
-              "projectPath": "C:\\Users\\Vali\\Desktop\\ekzamin WebAPI\\Application\\Application.csproj"
+            "C:\\Users\\Vali\\Desktop\\PROJECT\\ClinicQueue\\Application\\Application.csproj": {
+              "projectPath": "C:\\Users\\Vali\\Desktop\\PROJECT\\ClinicQueue\\Application\\Application.csproj"
             },
-            "C:\\Users\\Vali\\Desktop\\ekzamin WebAPI\\Infrastructure\\Infrastructure.csproj": {
-              "projectPath": "C:\\Users\\Vali\\Desktop\\ekzamin WebAPI\\Infrastructure\\Infrastructure.csproj"
+            "C:\\Users\\Vali\\Desktop\\PROJECT\\ClinicQueue\\Infrastructure\\Infrastructure.csproj": {
+              "projectPath": "C:\\Users\\Vali\\Desktop\\PROJECT\\ClinicQueue\\Infrastructure\\Infrastructure.csproj"
             }
           }
         }

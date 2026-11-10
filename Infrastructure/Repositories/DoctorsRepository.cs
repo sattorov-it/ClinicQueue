@@ -7,45 +7,44 @@ namespace Infrastructure.Repositories;
 
 public class DoctorRepository(AppDbContext appDbContext) : IDoctorsRepository
 {
-    private AppDbContext _context = appDbContext;
-    public async Task<bool> AddDoctorAsync(Doctors doctor)
+    private readonly AppDbContext _context = appDbContext;
+
+    public async Task<bool> AddDoctorAsync(Doctor doctor)
     {
-        var connection = _context.Connection();
-        var query = "insert into doctors (fullname, specialty, hiredat) values (@fullname, @specialty, @hiredat)";
+        using var connection = _context.Connection();
+        var query = "insert into doctors (fullname, specialty, hiredat) values (@FullName, @Specialty, @HiredAt)";
+        var res = await connection.ExecuteAsync(query, doctor);
+        return res > 0;
+    }
+
+    public async Task<bool> UpdateDoctorAsync(Doctor doctor)
+    {
+        using var connection = _context.Connection();
+        var query = "update doctors set fullname = @FullName, specialty = @Specialty, hiredat = @HiredAt where id = @Id";
         var res = await connection.ExecuteAsync(query, doctor);
         return res > 0;
     }
 
     public async Task<bool> DeactivateDoctorAsync(int id)
     {
-        var connection = _context.Connection();
+        using var connection = _context.Connection();
         var query = "update doctors set isactive = false where id = @id";
         var res = await connection.ExecuteAsync(query, new { id });
         return res > 0;
     }
 
-    public async Task<Doctors> GetDoctorAsync(int id)
+    public async Task<Doctor?> GetDoctorAsync(int id)
     {
-        var connection = _context.Connection();
+        using var connection = _context.Connection();
         var query = "select * from doctors where id = @id";
-        var doctor = await connection.QuerySingleOrDefaultAsync<Doctors>(query, new { id });
-        return doctor;
+        return await connection.QuerySingleOrDefaultAsync<Doctor>(query, new { id });
     }
 
-    public async Task<List<Doctors>> GetDoctorsAsync()
+    public async Task<List<Doctor>> GetDoctorsAsync()
     {
-        var connection = _context.Connection();
-        var query = "select * from doctors";
-        var doctors = await connection.QueryAsync<Doctors>(query);
+        using var connection = _context.Connection();
+        var query = "select * from doctors order by id";
+        var doctors = await connection.QueryAsync<Doctor>(query);
         return doctors.ToList();
     }
-
-    public async Task<bool> UpdateDoctorAsync(int id)
-    {
-        var connection = _context.Connection();
-        var query = "update doctors set fullname = @fullname, specialty = @specialty, hiredat = @hiredat where id = @id";
-        var res = await connection.ExecuteAsync(query, query);
-        return res > 0;
-    }
-
 }

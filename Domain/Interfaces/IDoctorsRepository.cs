@@ -4,9 +4,9 @@ namespace Domain.Interfaces;
 
 public interface IDoctorsRepository
 {
-    Task<bool> AddDoctorAsync(Doctors doctor);
-    Task<List<Doctors>> GetDoctorsAsync();
-    Task<Doctors> GetDoctorAsync(int id);
-    Task<bool> UpdateDoctorAsync(int id);
+    Task<bool> AddDoctorAsync(Doctor doctor);
+    Task<bool> UpdateDoctorAsync(Doctor doctor);
     Task<bool> DeactivateDoctorAsync(int id);
+    Task<Doctor?> GetDoctorAsync(int id);
+    Task<List<Doctor>> GetDoctorsAsync();
 }

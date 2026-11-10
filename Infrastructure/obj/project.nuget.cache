@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "zCeFM1f8sqU=",
+  "dgSpecHash": "mxJXMJui9bY=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Vali\\Desktop\\ekzamin WebAPI\\Infrastructure\\Infrastructure.csproj",
+  "projectFilePath": "C:\\Users\\Vali\\Desktop\\PROJECT\\ClinicQueue\\Infrastructure\\Infrastructure.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Vali\\.nuget\\packages\\dapper\\2.1.89\\dapper.2.1.89.nupkg.sha512",
     "C:\\Users\\Vali\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\10.0.0\\microsoft.extensions.dependencyinjection.abstractions.10.0.0.nupkg.sha512",
