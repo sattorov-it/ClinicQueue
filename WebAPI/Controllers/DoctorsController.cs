@@ -1,6 +1,6 @@
+using Application.DTOs;
 using Application.Interfaces;
 using Application.Responses;
-using Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers;
@@ -9,35 +9,35 @@ namespace WebAPI.Controllers;
 [Route("doctors")]
 public class DoctorsController(IDoctorService doctorService) : ControllerBase
 {
-    private  IDoctorService _service = doctorService;
+    private IDoctorService service = doctorService;
 
     [HttpPost]
-    public async Task<ApiResponse<bool>> AddDoctor(Doctor doctor)
+    public async Task<ApiResponse<bool>> CreateDoctor(CreateDoctorDto dto)
     {
-        return await _service.AddDoctorAsync(doctor);
+        return await service.CreateDoctorAsync(dto);
     }
 
     [HttpGet]
-    public async Task<ApiResponse<List<Doctor>>> GetDoctors()
+    public async Task<ApiResponse<List<GetDoctorDto>>> GetDoctors()
     {
-        return await _service.GetDoctorsAsync();
+        return await service.GetDoctorsAsync();
     }
 
     [HttpGet("{id:int}")]
-    public async Task<ApiResponse<Doctor>> GetDoctor(int id)
+    public async Task<ApiResponse<GetDoctorDto>> GetDoctor(int id)
     {
-        return await _service.GetDoctorAsync(id);
+        return await service.GetDoctorAsync(id);
     }
 
     [HttpPut("{id:int}")]
-    public async Task<ApiResponse<bool>> UpdateDoctor(int id, Doctor doctor)
+    public async Task<ApiResponse<bool>> UpdateDoctor(UpdateDoctorDto dto)
     {
-        return await _service.UpdateDoctorAsync(id, doctor);
+        return await service.UpdateDoctorAsync(dto);
     }
 
     [HttpPatch("{id:int}/deactivate")]
     public async Task<ApiResponse<bool>> DeactivateDoctor(int id)
     {
-        return await _service.DeactivateDoctorAsync(id);
+        return await service.DeactivateDoctorAsync(id);
     }
 }

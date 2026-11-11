@@ -1,6 +1,6 @@
+using Application.DTOs;
 using Application.Interfaces;
 using Application.Responses;
-using Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers;
@@ -9,29 +9,29 @@ namespace WebAPI.Controllers;
 [Route("rooms")]
 public class RoomsController(IRoomService roomService) : ControllerBase
 {
-    private  IRoomService _service = roomService;
+    private IRoomService service = roomService;
 
     [HttpPost]
-    public async Task<ApiResponse<bool>> AddRoom(Room room)
+    public async Task<ApiResponse<bool>> CreateRoom(CreateRoomDto dto)
     {
-        return await _service.AddRoomAsync(room);
+        return await service.CreateRoomAsync(dto);
     }
 
     [HttpGet]
-    public async Task<ApiResponse<List<Room>>> GetRooms()
+    public async Task<ApiResponse<List<GetRoomDto>>> GetRooms()
     {
-        return await _service.GetRoomsAsync();
+        return await service.GetRoomsAsync();
     }
 
     [HttpPut("{id:int}")]
-    public async Task<ApiResponse<bool>> UpdateRoom(int id, Room room)
+    public async Task<ApiResponse<bool>> UpdateRoom(UpdateRoomDto dto)
     {
-        return await _service.UpdateRoomAsync(id, room);
+        return await service.UpdateRoomAsync(dto);
     }
 
     [HttpPatch("{id:int}/deactivate")]
     public async Task<ApiResponse<bool>> DeactivateRoom(int id)
     {
-        return await _service.DeactivateRoomAsync(id);
+        return await service.DeactivateRoomAsync(id);
     }
 }
