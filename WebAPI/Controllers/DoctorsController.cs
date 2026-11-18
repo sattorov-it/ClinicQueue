@@ -7,37 +7,53 @@ namespace WebAPI.Controllers;
 
 [ApiController]
 [Route("doctors")]
-public class DoctorsController(IDoctorService doctorService) : ControllerBase
+public class DoctorsController(IDoctorService doctorService, ILogger<DoctorsController> logger) : ControllerBase
 {
     private IDoctorService service = doctorService;
+    private ILogger<DoctorsController> _logger = logger;
 
     [HttpPost]
     public async Task<ApiResponse<bool>> CreateDoctor(CreateDoctorDto dto)
     {
-        return await service.CreateDoctorAsync(dto);
+        _logger.LogInformation("Request received.");
+        var res = await service.CreateDoctorAsync(dto);
+        _logger.LogInformation("Response sent.");
+        return res;
     }
 
     [HttpGet]
     public async Task<ApiResponse<List<GetDoctorDto>>> GetDoctors()
     {
-        return await service.GetDoctorsAsync();
+        _logger.LogInformation("Request received.");
+        var res = await service.GetDoctorsAsync();
+        _logger.LogInformation("Response sent.");
+        return res;
     }
 
     [HttpGet("{id:int}")]
     public async Task<ApiResponse<GetDoctorDto>> GetDoctor(int id)
     {
-        return await service.GetDoctorAsync(id);
+        _logger.LogInformation("Request received.");
+        var res = await service.GetDoctorAsync(id);
+        _logger.LogInformation("Response sent.");
+        return res;
     }
 
     [HttpPut("{id:int}")]
     public async Task<ApiResponse<bool>> UpdateDoctor(UpdateDoctorDto dto)
     {
-        return await service.UpdateDoctorAsync(dto);
+        _logger.LogInformation("Request received.");
+        var res = await service.UpdateDoctorAsync(dto);
+        _logger.LogInformation("Response sent.");
+        return res;
     }
 
     [HttpPatch("{id:int}/deactivate")]
     public async Task<ApiResponse<bool>> DeactivateDoctor(int id)
     {
-        return await service.DeactivateDoctorAsync(id);
+        _logger.LogInformation("Request received.");
+        var res = await service.DeactivateDoctorAsync(id);
+        _logger.LogInformation("Response sent.");
+        return res;
     }
 }

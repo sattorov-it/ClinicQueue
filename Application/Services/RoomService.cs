@@ -51,7 +51,7 @@ public class RoomService(IRoomsRepository roomRepository) : IRoomService
         {
             Id = x.Id,
             Name = x.Name,
-            IsActive = x.Isactive
+            IsActive = x.IsActive
         }).ToList();
         return new ApiResponse<List<GetRoomDto>>(HttpStatusCode.OK, "List of rooms.", res);
     }

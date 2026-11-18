@@ -1,3 +1,5 @@
+using System.Data.Common;
+
 namespace Domain.Models;
 
 public class Patient
@@ -7,5 +9,5 @@ public class Patient
     public string Phone { get; set; } = null!;
     public DateTime? BirthDate { get; set; }
     public bool IsActive { get; set; }
-    public DateTime CreatedAt { get; set; }
+    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 }
